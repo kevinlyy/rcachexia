@@ -1,0 +1,47 @@
+# Load the dataset
+library(readxl)
+temp <- read_excel("working_dir//dataset.xlsx")
+dataset <- temp
+
+# Extract the input variables for model development
+variables <- c('bmi.six','bmi.one','bmi','wc.six.now','wc.one.now','wc.six.one','reverse')
+variables_no_outcome <- c('bmi.six','bmi.one','bmi','wc.six.now','wc.one.now','wc.six.one')
+
+# Correlation plot
+library(tidyverse)
+library(ggcorrplot)
+library(ggthemes)
+
+corr.matrix <- cor(dataset[variables],method = c("spearman"))
+p.matrix <- round(cor_pmat(dataset[variables]),3)
+
+ggcorrplot(corr.matrix,method = "circle",
+    hc.order = TRUE, hc.method = "hclust",
+    outline.color = 'white',
+    ggtheme = theme_bw(),
+    colors = c("#6D9EC1",'white','#E46726'),
+    lab=T, lab_size=3,
+    p.mat = p.matrix, insig = "blank")
+
+library(caret)
+confusionMatrix(as.factor(dataset$predict_class),as.factor(dataset$reverse),positive='yes')
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
