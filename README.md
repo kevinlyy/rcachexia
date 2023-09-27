@@ -1,2 +1,2 @@
 ## rcachexia - PRCC
-> Supplementary Materials for the article 'Explainable machine learning for early identification of potentially reversible cancer cachexia via exploiting the predictive potential of body weight dynamics'
+> Supplementary Materials for the article 'Early identification of potentially reversible cancer cachexia using explainable machine learning driven by body weight dynamics'
